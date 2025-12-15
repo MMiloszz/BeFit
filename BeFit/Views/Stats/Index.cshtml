@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BeFit.Models.ViewModels.ExerciseStatsRow>
+
+<h1>Statystyki (ostatnie 4 tygodnie)</h1>
+
+@if (!Model.Any())
+{
+    <p>Brak danych z ostatnich 4 tygodni.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ćwiczenie</th>
+                <th>Ile razy</th>
+                <th>Łącznie powtórzeń</th>
+                <th>Średnie obciążenie (kg)</th>
+                <th>Maksymalne obciążenie (kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.ExerciseName</td>
+                    <td>@r.TimesPerformed</td>
+                    <td>@r.TotalReps</td>
+                    <td>@r.AvgLoad.ToString("0.##")</td>
+                    <td>@r.MaxLoad.ToString("0.##")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
